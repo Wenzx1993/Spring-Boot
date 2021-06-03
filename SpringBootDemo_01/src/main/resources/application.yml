@@ -1,0 +1,13 @@
+#ÏìÓ¦±àÂë
+server:
+  servlet:
+    encoding:
+      force-request: true
+
+spring:
+    devtools:
+      restart:
+        exclude:
+
+
+

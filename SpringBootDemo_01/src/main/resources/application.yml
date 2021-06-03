@@ -4,6 +4,7 @@ server:
     encoding:
       force-request: true
 
+#热部署排除资源
 spring:
     devtools:
       restart:

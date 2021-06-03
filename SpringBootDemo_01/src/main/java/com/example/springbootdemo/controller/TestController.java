@@ -4,7 +4,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class TestController {   
+@RequestMapping(produces = "application/json;charset=utf-8")
+public class TestController {
 
 
     @RequestMapping("test1")

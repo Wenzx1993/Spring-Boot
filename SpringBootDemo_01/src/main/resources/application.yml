@@ -1,10 +1,11 @@
-#响应编码
+#涓枃涔辩爜
 server:
   servlet:
     encoding:
       force-request: true
+  port: 8080
 
-#热部署排除资源
+#涓枃涔辩爜
 spring:
     devtools:
       restart:

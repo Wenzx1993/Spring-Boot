@@ -14,24 +14,17 @@
  * limitations under the License.
  */
 
-package smoketest.jpa.repository;
+package smoketest.war;
 
-import org.springframework.stereotype.Repository;
-import smoketest.jpa.domain.Note;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import java.util.List;
+@RestController
+public class MyController {
 
-@Repository
-class JpaNoteRepository implements NoteRepository {
-
-	@PersistenceContext
-	private EntityManager entityManager;
-
-	@Override
-	public List<Note> findAll() {
-		return this.entityManager.createQuery("SELECT n FROM Note n", Note.class).getResultList();
+	@GetMapping("/")
+	public String hello() {
+		return "Hello World!";
 	}
 
 }

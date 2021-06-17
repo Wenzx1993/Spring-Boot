@@ -13,32 +13,38 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-package smoketest.jpa.web;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.servlet.ModelAndView;
-import smoketest.jpa.domain.Note;
-import smoketest.jpa.repository.NoteRepository;
+package smoketest.jpa.repository;
 
 import java.util.List;
 
-@Controller
-public class IndexController {
+import org.junit.jupiter.api.Test;
+import smoketest.jpa.domain.Tag;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+/**
+ * Integration tests for {@link JpaTagRepository}.
+ *
+ * @author Andy Wilkinson
+ */
+@SpringBootTest
+@Transactional
+class JpaTagRepositoryIntegrationTests {
 
 	@Autowired
-	private NoteRepository noteRepository;
+	JpaTagRepository repository;
 
-	@GetMapping("/")
-	@Transactional(readOnly = true)
-	public ModelAndView index() {
-		List<Note> notes = this.noteRepository.findAll();
-		ModelAndView modelAndView = new ModelAndView("index");
-		modelAndView.addObject("notes", notes);
-		return modelAndView;
+	@Test
+	void findsAllTags() {
+		List<Tag> tags = this.repository.findAll();
+		assertThat(tags).hasSize(3);
+		for (Tag tag : tags) {
+			assertThat(tag.getNotes().size()).isGreaterThan(0);
+		}
 	}
 
 }

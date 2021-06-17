@@ -14,24 +14,19 @@
  * limitations under the License.
  */
 
-package smoketest.jpa.repository;
+package smoketest.war;
 
-import org.springframework.stereotype.Repository;
-import smoketest.jpa.domain.Note;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
+import org.springframework.context.annotation.PropertySource;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import java.util.List;
+@SpringBootApplication
+@PropertySource("WEB-INF/custom.properties")
+public class SampleWarApplication extends SpringBootServletInitializer {
 
-@Repository
-class JpaNoteRepository implements NoteRepository {
-
-	@PersistenceContext
-	private EntityManager entityManager;
-
-	@Override
-	public List<Note> findAll() {
-		return this.entityManager.createQuery("SELECT n FROM Note n", Note.class).getResultList();
+	public static void main(String[] args) {
+		SpringApplication.run(SampleWarApplication.class, args);
 	}
 
 }

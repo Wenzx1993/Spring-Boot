@@ -16,9 +16,9 @@
 
 package smoketest.jpa.repository;
 
-import java.util.List;
-
 import smoketest.jpa.domain.Tag;
+
+import java.util.List;
 
 public interface TagRepository {
 
